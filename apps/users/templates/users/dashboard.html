@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css">
+  </head>
+  <body>
+    <div class="container">
+      <nav class = 'row'>
+        <div class="ten columns">
+          <h3 class = 'eight columns'>Hi, {{name}}!</h3>
+        </div>
+        <div class="two columns">
+          <a href="/logout">Logout</a>
+        </div>
+      </nav>
+      <div class="row">
+        <h3>Your Trip Schedules</h3>
+        <table class="u-full-width">
+            <thead>
+              <tr>
+                <th>Destination</th>
+                <th>Travel Start Date</th>
+                <th>Travel End Date</th>
+                <th>Plan</th>
+              </tr>
+            </thead>
+            <tbody>
+              {%for trip in mytrips%}
+              <tr>
+                <td><a href="/thing/show/{{trip.id}}">{{trip.destination}}</a></td>
+                <td>{{trip.start}}</td>
+                <td>{{trip.end}}</td>
+                <td>{{trip.plan}}</td>
+              </tr>
+              {%endfor%}
+              {%for join in myjoins%}
+              <tr>
+                <td><a href="/thing/show/{{trip.id}}">{{join.trip.destination}}</a></td>
+                <td>{{join.trip.start}}</td>
+                <td>{{join.trip.end}}</td>
+                <td>{{join.trip.plan}}</td>
+              </tr>
+              {%endfor%}
+            </tbody>
+          </table>
+          <h3>Other User's Travel Plans</h3>
+          <table class="u-full-width">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Destination</th>
+                  <th>Travel Start Date</th>
+                  <th>Travel End Date</th>
+                  <th>Do You Want to Join?</th>
+                </tr>
+              </thead>
+              <tbody>
+                {%for trip in alltrips%}
+                <tr>
+                  <td>{{trip.planner.name}}</td>
+                  <td><a href="/thing/show/{{trip.id}}">{{trip.destination}}</a></td>
+                  <td>{{trip.start}}</td>
+                  <td>{{trip.end}}</td>
+                  <td><a href="/thing/join/{{trip.id}}">Join</a></td>
+                </tr>
+                {%endfor%}
+              </tbody>
+            </table>
+            <div class="row">
+              <div class="ten columns">
+                <p></p>
+              </div>
+              <div class="two columns">
+                <a href="/thing/add">Add Travel Plan</a>
+              </div>
+            </div>
+
+          <!-- <h4>Recent Book Reviews</h4>
+          {%for review in reviews%}
+          <h5>{{review.book.title}}</h5>
+          <p>Rating: {{review.stars}}</p>
+          <a href="/users/{{review.reviewer.id}}">{{review.reviewer.first_name}}</a> says: {{review.review}}
+          <p>Posted on: {{review.created_at}}</p>
+          {%endfor%}
+        </div>
+        <div class="one-half column">
+          <h5 class>Other Books with Reviews</h5>
+          <div class="scroll">
+            {%for book in books%}
+            <p><a href="/books/{{book.id}}">{{book.title}}</a></p>
+            {%endfor%} -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
